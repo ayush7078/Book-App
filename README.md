@@ -18,8 +18,8 @@ A RESTful API built using **Node.js**, **Express**, **JWT Authentication**, and 
 ## 🛠 Setup Instructions
 
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/bookstore-api.git
-cd bookstore-api
+git clone https://github.com/ayush7078/Book-App.git
+cd Book-App
 
 # Install dependencies
 npm install
@@ -31,10 +31,11 @@ The server runs at:
 
 # Start Server Automatically
 npm run start:dev
+
 The server runs at:
 📍 http://localhost:3000
 
-🔐 Authentication
+# 🔐 Authentication
 All /api/books endpoints are protected and require a JWT token in the header:
 
 Authorization: Bearer <your_token>
@@ -42,7 +43,7 @@ You can obtain a token by logging in through the /api/auth/login endpoint.
 
 📘 API Endpoints
 🧍 User Endpoints
-POST /api/auth/register
+- POST /api/auth/register
 Register a new user.
 
 Request Body:
@@ -55,7 +56,7 @@ Request Body:
 Response:
 { "message": "User registered" }
 
-POST /api/auth/login
+- POST /api/auth/login
 Authenticate a user and get a JWT token.
 
 Request Body:
@@ -69,7 +70,7 @@ Response:
 }
 
 📚 Book Endpoints (JWT Token Required)
-GET /api/books
+- GET /api/books
 Get all books (supports pagination).
 
 Query Parameters (optional):
@@ -79,7 +80,7 @@ page — Page number (e.g. 1)
 limit — Items per page (e.g. 10)
 
 Example:
-GET /api/books?page=1&limit=5
+- GET /api/books?page=1&limit=5
 Response:
 [
   {
@@ -92,14 +93,14 @@ Response:
   }
 ]
 
-GET /api/books/search?genre=Fiction
+- GET /api/books/search?genre=Fiction
 Filter books by genre.
 
-GET /api/books/:id
+- GET /api/books/:id
 Fetch a book by its ID.
 
 Example:
-GET /api/books/8af7a5ff-0735-4f33-8ef3-5b517a7b879d
+- GET /api/books/8af7a5ff-0735-4f33-8ef3-5b517a7b879d
 POST /api/books
 Add a new book (authenticated user only).
 
@@ -117,10 +118,9 @@ Response:
   "author": "Jane Doe",
   "genre": "Drama",
   "publishedYear": 2022,
-  "userId": "creator_user_id"
 }
 
-PUT /api/books/:id
+- PUT /api/books/:id
 Update a book (only by the creator).
 
 Request Body (partial or full update):
@@ -135,10 +135,9 @@ Response:
   "author": "Jane Doe",
   "genre": "Drama",
   "publishedYear": 2022,
-  "userId": "creator_user_id"
 }
 
-DELETE /api/books/:id
+- DELETE /api/books/:id
 Delete a book (only by the creator).
 
 Response:
