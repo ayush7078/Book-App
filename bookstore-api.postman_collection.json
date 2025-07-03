@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"email\":\"test123@example.com\", \"password\":\"123456\"}",
+							"raw": "{\"email\":\"test@example.com\", \"password\":\"123456\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -43,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\": \"Test\", \"email\":\"test123@example.com\", \"password\":\"123456\"}",
+							"raw": "{\"name\": \"Test\", \"email\":\"test@example.com\", \"password\":\"123456\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -84,12 +84,22 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/books",
+							"raw": "{{URL}}/books?page=1&limit=10",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"books"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
 							]
 						}
 					},
@@ -111,7 +121,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/books/search?genre=Fantasy",
+							"raw": "{{URL}}/books/search?genre=Dystopian",
 							"host": [
 								"{{URL}}"
 							],
@@ -122,7 +132,7 @@
 							"query": [
 								{
 									"key": "genre",
-									"value": "Fantasy"
+									"value": "Dystopian"
 								}
 							]
 						}
@@ -145,13 +155,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/books/1",
+							"raw": "{{URL}}/books/d89a2a45-b43a-46b1-bb19-8e58f36f6011",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"books",
-								"1"
+								"d89a2a45-b43a-46b1-bb19-8e58f36f6011"
 							]
 						}
 					},
@@ -174,7 +184,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"title\":\"1984\",\"author\":\"George Orwell\",\"genre\":\"Dystopian\",\"publishedYear\":1949}",
+							"raw": "{\"title\":\"Critino\",\"author\":\"Tom bolland\",\"genre\":\"Wisden\",\"publishedYear\":1949}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -218,13 +228,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/books/c8decbbc-bc17-447b-acf5-14dd49a46a7d",
+							"raw": "{{URL}}/books/d89a2a45-b43a-46b1-bb19-8e58f36f6011",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"books",
-								"c8decbbc-bc17-447b-acf5-14dd49a46a7d"
+								"d89a2a45-b43a-46b1-bb19-8e58f36f6011"
 							]
 						}
 					},
@@ -245,14 +255,23 @@
 						},
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{URL}}/books/2",
+							"raw": "{{URL}}/books/94a0ff62-a79a-4b6e-85dd-3c5adb6ef754",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"books",
-								"2"
+								"94a0ff62-a79a-4b6e-85dd-3c5adb6ef754"
 							]
 						}
 					},

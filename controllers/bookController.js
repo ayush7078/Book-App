@@ -11,8 +11,7 @@ exports.getBooks = async (req, res, next) => {
       books = books.slice(start, start + parseInt(limit));
     }
     // Remove userId from each book before sending
-    const booksWithoutUserId = books.map(({ userId, ...rest }) => rest);
-    res.json(booksWithoutUserId);
+    res.json(books);
   } catch (err) {
     next(err);
   }
@@ -24,8 +23,7 @@ exports.getBookById = async (req, res, next) => {
     const book = books.find(b => b.id === req.params.id);
     if (!book) return res.status(404).json({ message: 'Book not found' });
     // Destructure to exclude userId before sending
-    const { userId, ...bookWithoutUserId } = book;
-    res.json(bookWithoutUserId);
+    res.json(book);
   } catch (err) {
     next(err);
   }
@@ -45,7 +43,8 @@ exports.addBook = async (req, res, next) => {
     const books = await readJSON(booksPath);
     books.push(newBook);
     await writeJSON(booksPath, books);
-    res.status(201).json(newBook);
+     
+    res.status(201).json(newBook); 
   } catch (err) {
     next(err);
   }
@@ -57,9 +56,13 @@ exports.updateBook = async (req, res, next) => {
     const index = books.findIndex(b => b.id === req.params.id);
     if (index === -1) return res.status(404).json({ message: 'Book not found' });
     if (books[index].userId !== req.user.id)
-      return res.status(403).json({ message: 'Forbidden' });
+
+  return res.status(403).json({ message: 'You do not have permission to update this book' });
+
     books[index] = { ...books[index], ...req.body };
     await writeJSON(booksPath, books);
+  
+ 
     res.json(books[index]);
   } catch (err) {
     next(err);
@@ -72,7 +75,9 @@ exports.deleteBook = async (req, res, next) => {
     const book = books.find(b => b.id === req.params.id);
     if (!book) return res.status(404).json({ message: 'Book not found' });
     if (book.userId !== req.user.id)
-      return res.status(403).json({ message: 'Forbidden' });
+
+  return res.status(403).json({ message: 'You do not have permission to update this book' });
+
     books = books.filter(b => b.id !== req.params.id);
     await writeJSON(booksPath, books);
     res.status(204).send();
@@ -84,8 +89,17 @@ exports.deleteBook = async (req, res, next) => {
 exports.searchBooks = async (req, res, next) => {
   try {
     const books = await readJSON(booksPath);
-    const genre = req.query.genre;
-    const result = genre ? books.filter(b => b.genre === genre) : books;
+    const genreQuery = req.query.genre;
+
+    let result = books;
+
+    if (genreQuery) {
+      const lowerQuery = genreQuery.toLowerCase();
+      result = books.filter(book =>
+        book.genre && book.genre.toLowerCase().includes(lowerQuery)
+      );
+    }
+
     res.json(result);
   } catch (err) {
     next(err);

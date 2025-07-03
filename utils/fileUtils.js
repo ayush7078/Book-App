@@ -1,16 +1,28 @@
 const fs = require('fs').promises;
+const path = require('path');
 
-const readJSON = async (path) => {
+// Ensure the directory exists before reading/writing
+async function ensureDirectoryExistence(filePath) {
+  const dir = path.dirname(filePath);
+  await fs.mkdir(dir, { recursive: true });
+}
+
+exports.readJSON = async (filePath) => {
   try {
-    const data = await fs.readFile(path, 'utf-8');
-    return JSON.parse(data || '[]');
-  } catch {
-    return [];
+    await ensureDirectoryExistence(filePath);
+    const data = await fs.readFile(filePath, 'utf-8');
+    return JSON.parse(data);
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      // File doesn't exist — create it as an empty array
+      await fs.writeFile(filePath, '[]');
+      return [];
+    }
+    throw err;
   }
 };
 
-const writeJSON = async (path, data) => {
-  await fs.writeFile(path, JSON.stringify(data, null, 2));
+exports.writeJSON = async (filePath, data) => {
+  await ensureDirectoryExistence(filePath);
+  await fs.writeFile(filePath, JSON.stringify(data, null, 2));
 };
-
-module.exports = { readJSON, writeJSON };
