@@ -32,7 +32,7 @@ Create a `.env` file in the root of the project with the following content:
 ```env
 PORT=3000
 JWT_SECRET=your_jwt_secret_here
-
+```
 
 # Start the server
 npm start
