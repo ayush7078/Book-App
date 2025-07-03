@@ -4,7 +4,8 @@ const { readJSON, writeJSON } = require('../utils/fileUtils');
 const path = require('path');
 const usersPath = path.join(__dirname, '../data/users.json');
 
-const SECRET = 'your_jwt_secret';
+const SECRET = process.env.JWT_SECRET;
+
 
 exports.register = async (req, res, next) => {
   try {

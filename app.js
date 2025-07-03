@@ -1,4 +1,3 @@
-// app.js
 const express = require('express');
 const morgan = require('morgan');
 const authRoutes = require('./routes/authRoutes');
@@ -19,4 +18,4 @@ app.use('/api/books', authenticateToken, bookRoutes);
 app.use((req, res) => res.status(404).json({ message: 'Route not found' }));
 app.use(errorHandler);
 
-module.exports = app; // ✅ Don't start the server here
+module.exports = app;

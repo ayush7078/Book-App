@@ -21,8 +21,18 @@ A RESTful API built using **Node.js**, **Express**, **JWT Authentication**, and 
 git clone https://github.com/ayush7078/Book-App.git
 cd Book-App
 
+
 # Install dependencies
 npm install
+
+# ⚙️ Environment Variables (.env)
+
+Create a `.env` file in the root of the project with the following content:
+
+```env
+PORT=3000
+JWT_SECRET=your_jwt_secret_here
+
 
 # Start the server
 npm start
@@ -34,6 +44,7 @@ npm run start:dev
 
 The server runs at:
 📍 http://localhost:3000
+
 
 # 🔐 Authentication
 All /api/books endpoints are protected and require a JWT token in the header:
