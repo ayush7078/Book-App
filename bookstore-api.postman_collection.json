@@ -291,7 +291,7 @@
 		},
 		{
 			"key": "authToken",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NTE1MTUyMzMyNTMiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTE1MTUyNDJ9.C79VAUpx_AN8b-yye_ZHDkXi7pHh7eTdXyfa0iMKlxU\n",
+			"value": "",
 			"type": "string"
 		}
 	]
